@@ -87,6 +87,8 @@ public class Result
                 })!;
             case "reddit":
                 return Data.ToObject<RedditResult>()!;
+            case "twitter":
+                return Data.ToObject<TwitterResult>()!;
         }
 
         return null;
