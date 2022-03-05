@@ -33,4 +33,3 @@ public class PubDevPubSpec
     public Dictionary<string, string> Dependencies;
     public Dictionary<string, string> DevDependencies;
 }
-
