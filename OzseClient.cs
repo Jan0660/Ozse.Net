@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Serialization;
 using BclJsonSerializer = System.Text.Json.JsonSerializer;
@@ -51,7 +52,10 @@ public class OzseClient
 
 public class Job
 {
-    [JsonProperty("_id")] public string Id { get; set; }
+    [JsonPropertyName("_id")]
+    [JsonProperty("_id")]
+    public string Id { get; set; }
+
     public string Name { get; set; }
     public uint Timer { get; set; }
     public bool AllowTaskDuplicates { get; set; }
