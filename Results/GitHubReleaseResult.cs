@@ -1,4 +1,4 @@
-﻿namespace Ozse;
+﻿namespace Ozse.Results;
 
 public class GitHubReleaseResult : IResult
 {
@@ -11,7 +11,9 @@ public class GitHubReleaseResult : IResult
     public string Url { get; set; }
     public string HtmlUrl { get; set; }
     public string Tarball { get; set; }
+
     public string Zipball { get; set; }
+
     // todo: to datetimeoffset
     public long CreatedAt { get; set; }
     public long PublishedAt { get; set; }

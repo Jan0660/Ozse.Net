@@ -1,4 +1,4 @@
-﻿namespace Ozse;
+﻿namespace Ozse.Results;
 
 public class RedditResult : IResult
 {

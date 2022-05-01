@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Ozse;
+namespace Ozse.Results;
 
 public class NpmResult : IResult
 {
