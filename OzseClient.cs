@@ -71,6 +71,19 @@ public class Result
     public string JobName { get; set; }
     public JObject Data { get; set; }
 
+    private static JsonSerializer _snakeCaseSerializer = new()
+    {
+        ContractResolver = new DefaultContractResolver()
+        {
+            NamingStrategy = new SnakeCaseNamingStrategy()
+        }
+    };
+
+    private static JsonSerializer _camelCaseSerializer = new()
+    {
+        ContractResolver = new CamelCasePropertyNamesContractResolver()
+    };
+
     public IResult? ParseData()
     {
         switch (JobName)
@@ -78,22 +91,17 @@ public class Result
             case "github":
                 return Data.ToObject<GitHubReleaseResult>()!;
             case "npm":
-                return Data.ToObject<NpmResult>(new JsonSerializer()
-                {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver()
-                })!;
+                return Data.ToObject<NpmResult>(_camelCaseSerializer)!;
             case "pubdev":
-                return Data.ToObject<PubDevResult>(new JsonSerializer()
-                {
-                    ContractResolver = new DefaultContractResolver()
-                    {
-                        NamingStrategy = new SnakeCaseNamingStrategy()
-                    }
-                })!;
+                return Data.ToObject<PubDevResult>(_snakeCaseSerializer)!;
             case "reddit":
                 return Data.ToObject<RedditResult>()!;
             case "twitter":
                 return Data.ToObject<TwitterResult>()!;
+            case "youtube":
+                return Data.ToObject<YouTubeResult>(_camelCaseSerializer)!;
+            case "twitch":
+                return Data.ToObject<TwitchResult>()!;
         }
 
         return null;
